@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
-import java.util.Iterator;
 
 @SpringBootApplication
 public class MerchApplication extends SpringBootServletInitializer {

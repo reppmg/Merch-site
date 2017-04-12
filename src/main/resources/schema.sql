@@ -2,15 +2,16 @@
 
 CREATE TABLE public.goods
 (
-    id SERIAL PRIMARY KEY NOT NULL,
-    price BIGINT
+    id BIGINT SERIAL PRIMARY KEY NOT NULL,
+    price BIGINT,
+    name VARCHAR(1024)
 );
 CREATE UNIQUE INDEX goods_id_uindex ON public.goods (id);
 
 
 CREATE TABLE public.orders
 (
-    id SERIAL PRIMARY KEY NOT NULL,
+    id BIGINT SERIAL PRIMARY KEY NOT NULL,
     address VARCHAR(1024) NOT NULL,
     date DATE,
     phone BIGINT NOT NULL,
@@ -21,7 +22,7 @@ CREATE UNIQUE INDEX orders_id_uindex ON public.orders (id);
 
 CREATE TABLE public.good_order
 (
-    id SERIAL PRIMARY KEY NOT NULL,
+    id BIGINT SERIAL PRIMARY KEY NOT NULL,
     good_id INT NOT NULL,
     order_id INT NOT NULL,
     CONSTRAINT good_order_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id),
@@ -42,7 +43,7 @@ CREATE UNIQUE INDEX shirts_pkey ON public.shirts (good_id);
 
 CREATE TABLE public.cups
 (
-  good_id INT PRIMARY KEY NOT NULL,
+  good_id BIGINT SERIAL PRIMARY KEY NOT NULL,
   capacity INT NOT NULL,
   CONSTRAINT cups_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id)
 );

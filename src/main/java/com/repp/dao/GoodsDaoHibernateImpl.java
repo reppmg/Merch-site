@@ -2,27 +2,32 @@ package com.repp.dao;
 
 import com.repp.model.Goods;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
  * @author Denis.Repp
  */
-//@Repository
-public class GoodsDaoImpl implements GoodsDao{
+@Repository
+@Transactional
+public class GoodsDaoHibernateImpl implements GoodsDao{
 
     @Autowired
-    NamedParameterJdbcTemplate jdbcTemplate;
+    private EntityManager entityManager;
+
 
     @Override
     public List<Goods> getAll() {
-        return jdbcTemplate.query("SELECT ID, PRICE, NAME FROM GOODS", (resultSet, i) -> new Goods(resultSet.getLong(1), resultSet.getLong(2), resultSet.getString(3)));
+        List<Goods> resultList = entityManager.createQuery("from Goods").getResultList();
+        return resultList;
     }
 
     @Override
     public boolean add(Goods good) {
+        entityManager.persist(good);
         return false;
     }
 }

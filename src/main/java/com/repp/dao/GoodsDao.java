@@ -10,4 +10,6 @@ import java.util.List;
 public interface GoodsDao {
 
     List<Goods> getAll();
+
+    boolean add(Goods good);
 }
