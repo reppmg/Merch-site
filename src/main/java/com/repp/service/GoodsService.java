@@ -1,6 +1,6 @@
 package com.repp.service;
 
-import com.repp.model.Good;
+import com.repp.model.Goods;
 
 import java.util.List;
 
@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface GoodsService {
 
-    List<Good> getList();
+    List<Goods> getList();
+
+    boolean addGood(Goods good);
 }

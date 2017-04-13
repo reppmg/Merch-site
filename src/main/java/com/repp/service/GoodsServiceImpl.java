@@ -20,4 +20,9 @@ public class GoodsServiceImpl implements  GoodsService {
     public List<Good> getList() {
         return goodsDao.getAll();
     }
+
+    @Override
+    public boolean addGood(Goods good) {
+        return goodsDao.add(good);
+    }
 }

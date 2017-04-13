@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @SpringBootApplication
 public class MerchApplication extends SpringBootServletInitializer {
@@ -19,8 +18,7 @@ public class MerchApplication extends SpringBootServletInitializer {
 
     public static void main(final String[] args) {
         final ConfigurableApplicationContext ctx = SpringApplication.run(MerchApplication.class, args);
-        NamedParameterJdbcTemplate jdbcTemplate = ctx.getBean(NamedParameterJdbcTemplate.class);
-        System.out.println(jdbcTemplate);
+
 //
 //        Iterator<String> beanNamesIterator = ctx.getBeanFactory().getBeanNamesIterator();
 //        System.out.println("BEANSS");

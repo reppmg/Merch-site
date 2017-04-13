@@ -1,6 +1,6 @@
-INSERT INTO public.goods (id, price) VALUES (1, 100);
-INSERT INTO public.goods (id, price) VALUES (2, 200);
-INSERT INTO public.goods (id, price) VALUES (3, 50);
+INSERT INTO public.goods (id, price, name) VALUES (1, 100, 'cute t shirt');
+INSERT INTO public.goods (id, price, name) VALUES (2, 200, 'cool sweetshot');
+INSERT INTO public.goods (id, price, name) VALUES (3, 50, 'cup for coffee');
 
 INSERT INTO public.cups (good_id, capacity) VALUES (3, 400);
 
