@@ -1,6 +1,6 @@
 package com.repp.dao;
 
-import com.repp.model.Goods;
+import com.repp.model.Good;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface GoodsDao {
 
-    List<Goods> getAll();
+    List<Good> getAll();
 }

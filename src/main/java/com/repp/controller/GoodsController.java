@@ -1,6 +1,6 @@
 package com.repp.controller;
 
-import com.repp.model.Goods;
+import com.repp.model.Good;
 import com.repp.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +19,8 @@ public class GoodsController {
     @Autowired
     GoodsService goodsService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Goods>  getGoods() {
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Good>  getGoods() {
         return goodsService.getList();
     }
 

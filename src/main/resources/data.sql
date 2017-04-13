@@ -4,7 +4,8 @@ INSERT INTO public.goods (id, price) VALUES (3, 50);
 
 INSERT INTO public.cups (good_id, capacity) VALUES (3, 400);
 
-INSERT INTO public.shirts (size, color, good_id) VALUES ('M', 'red', 2);
+-- INSERT INTO public.shirts (size, color, good_id) VALUES ('M', 'red', 2);
+INSERT INTO public.shirts (size, color, good_id, images) VALUES ('M', 'red', 2, 'images/1.jpg');
 INSERT INTO public.shirts (size, color, good_id) VALUES ('XXL', 'greed', 1);
 
 INSERT INTO public.orders (id, address, date, phone, customer_name) VALUES (1, 'SPB nauki 17', '2017-03-14', 79111233456, 'Max');

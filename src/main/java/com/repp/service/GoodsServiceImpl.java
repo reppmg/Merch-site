@@ -1,7 +1,7 @@
 package com.repp.service;
 
 import com.repp.dao.GoodsDao;
-import com.repp.model.Goods;
+import com.repp.model.Good;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class GoodsServiceImpl implements  GoodsService {
     GoodsDao goodsDao;
 
     @Override
-    public List<Goods> getList() {
+    public List<Good> getList() {
         return goodsDao.getAll();
     }
 }
