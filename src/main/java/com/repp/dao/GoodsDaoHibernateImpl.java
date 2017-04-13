@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * @author Denis.Repp
+ * DAO implementation using hibernate
  */
 @Repository
 @Transactional

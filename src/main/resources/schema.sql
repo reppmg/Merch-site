@@ -1,50 +1,87 @@
 -- CREATE DATABASE shop;
 
+
+CREATE TABLE public.types
+(
+  id   INT SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(25)            NOT NULL,
+);
+CREATE UNIQUE INDEX types_pkey
+  ON public.types (id);
+
+
 CREATE TABLE public.goods
 (
-    id BIGINT SERIAL PRIMARY KEY NOT NULL,
-    price BIGINT,
-    name VARCHAR(1024)
+  id          BIGINT SERIAL PRIMARY KEY NOT NULL,
+  name        VARCHAR(25)               NOT NULL,
+  description VARCHAR(1024)             NOT NULL,
+  type_id     INT                       NOT NULL,
+  price       BIGINT                    NOT NULL,
+  CONSTRAINT types_goods_id_fk FOREIGN KEY (type_id) REFERENCES types (id)
 );
-CREATE UNIQUE INDEX goods_id_uindex ON public.goods (id);
+CREATE UNIQUE INDEX goods_id_uindex
+  ON public.goods (id);
 
+CREATE TABLE public.addresses (
+  id     BIGINT SERIAL NOT NULL,
+  zip    VARCHAR(25),
+  street VARCHAR(255)  NOT NULL,
+  rest   VARCHAR(255)  NOT NULL,
+);
+CREATE UNIQUE INDEX addresses_id_uindex
+  ON public.addresses (id);
 
 CREATE TABLE public.orders
 (
-    id BIGINT SERIAL PRIMARY KEY NOT NULL,
-    address VARCHAR(1024) NOT NULL,
-    date DATE,
-    phone BIGINT NOT NULL,
-    customer_name VARCHAR(255) NOT NULL
+  id            BIGINT SERIAL PRIMARY KEY NOT NULL,
+  address_id    INT,
+  email         VARCHAR(255),
+  creation_date DATE                      NOT NULL,
+  user_id       INT,
+  phone         VARCHAR(25)               NOT NULL
 );
-CREATE UNIQUE INDEX orders_id_uindex ON public.orders (id);
+CREATE UNIQUE INDEX orders_id_uindex
+  ON public.orders (id);
 
 
 CREATE TABLE public.good_order
 (
-    id BIGINT SERIAL PRIMARY KEY NOT NULL,
-    good_id INT NOT NULL,
-    order_id INT NOT NULL,
-    CONSTRAINT good_order_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id),
-    CONSTRAINT good_order_orders_id_fk FOREIGN KEY (order_id) REFERENCES orders (id)
+  id       BIGINT SERIAL PRIMARY KEY NOT NULL,
+  good_id  INT                       NOT NULL,
+  order_id INT                       NOT NULL,
+  CONSTRAINT good_order_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id),
+  CONSTRAINT good_order_orders_id_fk FOREIGN KEY (order_id) REFERENCES orders (id)
 );
-CREATE UNIQUE INDEX good_order_id_uindex ON public.good_order (id);
-
+CREATE UNIQUE INDEX good_order_id_uindex
+  ON public.good_order (id);
 
 CREATE TABLE public.shirts
 (
-  size VARCHAR(10) NOT NULL,
-  color VARCHAR(255) NOT NULL,
-  good_id INT NOT NULL PRIMARY KEY NOT NULL,
+  size    VARCHAR(10)  NOT NULL,
+  color   VARCHAR(255) NOT NULL,
+  good_id INT          NOT NULL PRIMARY KEY NOT NULL,
   CONSTRAINT shirts_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id)
 );
-CREATE UNIQUE INDEX shirts_pkey ON public.shirts (good_id);
+CREATE UNIQUE INDEX shirts_pkey
+  ON public.shirts (good_id);
 
 
 CREATE TABLE public.cups
 (
-  good_id BIGINT SERIAL PRIMARY KEY NOT NULL,
-  capacity INT NOT NULL,
+  good_id  BIGINT SERIAL PRIMARY KEY NOT NULL,
+  capacity INT                       NOT NULL,
   CONSTRAINT cups_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id)
 );
-CREATE UNIQUE INDEX cups_good_id_uindex ON public.cups (good_id);
+CREATE UNIQUE INDEX cups_good_id_uindex
+  ON public.cups (good_id);
+
+CREATE TABLE public.users (
+  id         BIGINT SERIAL NOT NULL,
+  login      VARCHAR(255)  NOT NULL,
+  password   VARCHAR(255)  NOT NULL,
+  email      VARCHAR(255)  NOT NULL,
+  address_id INT,
+  rights     INT           NOT NULL,
+);
+CREATE UNIQUE INDEX users_id_uindex
+  ON public.users (id);

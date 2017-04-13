@@ -5,7 +5,7 @@ import com.repp.model.Goods;
 import java.util.List;
 
 /**
- * @author Denis.Repp
+ * DAO dealing with goods
  */
 public interface GoodsDao {
 

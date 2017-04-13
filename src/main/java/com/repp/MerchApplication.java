@@ -19,11 +19,6 @@ public class MerchApplication extends SpringBootServletInitializer {
     public static void main(final String[] args) {
         final ConfigurableApplicationContext ctx = SpringApplication.run(MerchApplication.class, args);
 
-//
-//        Iterator<String> beanNamesIterator = ctx.getBeanFactory().getBeanNamesIterator();
-//        System.out.println("BEANSS");
-//        while (beanNamesIterator.hasNext()) {
-//            System.out.println(beanNamesIterator.next());
-//        }
+
     }
 }

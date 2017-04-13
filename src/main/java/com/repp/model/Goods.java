@@ -9,12 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * @author Denis.Repp
+ * Модель товара
  */
 @Setter
 @Getter
 @Entity
-public class Good {
+public class Goods {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,14 +22,17 @@ public class Good {
 
 
     private Long price;
+    private int type_id;
     private String name;
+    private String description;
 
-    public Good() {
+
+    public Goods() {
 
     }
 
 
-    public Good(Long id, Long price, String name) {
+    public Goods(Long id, Long price, String name) {
         this.id = id;
         this.price = price;
         this.name = name;
