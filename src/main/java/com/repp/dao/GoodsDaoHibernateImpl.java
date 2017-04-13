@@ -28,6 +28,6 @@ public class GoodsDaoHibernateImpl implements GoodsDao{
     @Override
     public boolean add(Goods good) {
         entityManager.persist(good);
-        return false;
+        return true;
     }
 }
