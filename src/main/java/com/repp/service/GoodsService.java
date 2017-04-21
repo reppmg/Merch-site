@@ -1,15 +1,15 @@
 package com.repp.service;
 
-import com.repp.model.Goods;
-
 import java.util.List;
 
 /**
  * Service, dealing with goods
  */
-public interface GoodsService {
+public interface GoodsService<T, PK> {
 
-    List<Goods> getList();
+    List<T> getList();
 
-    boolean addGood(Goods good);
+    T getGoodById(PK id);
+
+    boolean addGood(T good);
 }

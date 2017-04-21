@@ -1,26 +1,35 @@
 package com.repp.service;
 
 import com.repp.dao.GoodsDao;
-import com.repp.model.Goods;
+import com.repp.model.Good;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
-@Service
-public class GoodsServiceImpl implements  GoodsService {
+@Service("goodsService")
+public class GoodsServiceImpl implements  GoodsService<Good, Long> {
+
+
 
     @Autowired
-    GoodsDao goodsDao;
+            @Qualifier("goodsDao")
+    GoodsDao<Good, Long> goodsDao;
 
     @Override
-    public List<Goods> getList() {
+    public Good getGoodById(Long id) {
+        return goodsDao.getGoodById(id);
+    }
+
+    @Override
+    public List<Good> getList() {
         return goodsDao.getAll();
     }
 
     @Override
-    public boolean addGood(Goods good) {
+    public boolean addGood(Good good) {
         return goodsDao.add(good);
     }
 }

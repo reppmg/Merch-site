@@ -19,4 +19,4 @@ INSERT INTO public.orders (id, address_id, creation_date, phone, user_id) VALUES
 
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (1, 2, 1);
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (2, 3, 1);
-INSERT INTO public.good_order (id, good_id, order_id) VALUES (3, 1, 1);
+INSERT INTO public.good_order (id, good_id, order_id) VALUES (3, 1, 2);

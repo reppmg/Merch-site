@@ -1,15 +1,17 @@
 package com.repp.dao;
 
-import com.repp.model.Goods;
-
 import java.util.List;
 
 /**
  * DAO dealing with goods
  */
-public interface GoodsDao {
 
-    List<Goods> getAll();
+public interface GoodsDao<T, PK> {
 
-    boolean add(Goods good);
+    List<T> getAll();
+
+    boolean add(T good);
+
+    T getGoodById(PK id);
+
 }

@@ -10,6 +10,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class MerchApplication extends SpringBootServletInitializer {
 
 
+
     @Override
     protected SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
         return application.sources(MerchApplication.class);

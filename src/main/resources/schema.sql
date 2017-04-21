@@ -34,10 +34,10 @@ CREATE UNIQUE INDEX addresses_id_uindex
 CREATE TABLE public.orders
 (
   id            BIGINT SERIAL PRIMARY KEY NOT NULL,
-  address_id    INT,
+  address_id    BIGINT,
   email         VARCHAR(255),
-  creation_date DATE                      NOT NULL,
-  user_id       INT,
+  creation_date TIMESTAMP                      NOT NULL,
+  user_id       BIGINT,
   phone         VARCHAR(25)               NOT NULL
 );
 CREATE UNIQUE INDEX orders_id_uindex
@@ -47,8 +47,8 @@ CREATE UNIQUE INDEX orders_id_uindex
 CREATE TABLE public.good_order
 (
   id       BIGINT SERIAL PRIMARY KEY NOT NULL,
-  good_id  INT                       NOT NULL,
-  order_id INT                       NOT NULL,
+  good_id  BIGINT                       NOT NULL,
+  order_id BIGINT                       NOT NULL,
   CONSTRAINT good_order_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id),
   CONSTRAINT good_order_orders_id_fk FOREIGN KEY (order_id) REFERENCES orders (id)
 );
@@ -59,7 +59,7 @@ CREATE TABLE public.shirts
 (
   size    VARCHAR(10)  NOT NULL,
   color   VARCHAR(255) NOT NULL,
-  good_id INT          NOT NULL PRIMARY KEY NOT NULL,
+  good_id BIGINT          NOT NULL PRIMARY KEY NOT NULL,
   CONSTRAINT shirts_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id)
 );
 CREATE UNIQUE INDEX shirts_pkey
@@ -80,7 +80,7 @@ CREATE TABLE public.users (
   login      VARCHAR(255)  NOT NULL,
   password   VARCHAR(255)  NOT NULL,
   email      VARCHAR(255)  NOT NULL,
-  address_id INT,
+  address_id BIGINT,
   rights     INT           NOT NULL,
 );
 CREATE UNIQUE INDEX users_id_uindex

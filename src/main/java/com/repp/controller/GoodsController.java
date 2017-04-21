@@ -1,12 +1,10 @@
 package com.repp.controller;
 
-import com.repp.model.Goods;
+import com.repp.model.Good;
 import com.repp.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,16 +16,28 @@ import java.util.List;
 public class GoodsController {
 
     @Autowired
-    GoodsService goodsService;
+    @Qualifier("goodsService")
+    GoodsService<Good, Long> goodsService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Goods>  getGoods() {
+    public List<Good>  getGoods() {
         return goodsService.getList();
+    }
+
+    @RequestMapping(value="/{goodId}", method = RequestMethod.GET)
+    public Good getGood(@PathVariable String goodId) {
+        int id;
+        try {
+            id = Integer.parseInt(goodId);
+        } catch (NumberFormatException e){
+            return null;
+        }
+        return goodsService.getGoodById((long) id);
     }
 
 
     @RequestMapping(method = RequestMethod.POST)
-    public boolean addGood(@RequestBody final Goods good) {
+    public boolean addGood(@RequestBody final Good good) {
         return goodsService.addGood(good);
     }
 
