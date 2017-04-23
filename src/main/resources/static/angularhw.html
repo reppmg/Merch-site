@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-resource.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+</head>
+<body>
+<script>
+    // объявление модуля
+    var myAppModule = angular.module('applicationName', []);
+
+    // настройка модуля.
+    // этот пример создает фильтр "Привет"
+    myAppModule.filter('greet', function() {
+        return function(name) {
+            return 'Hello, ' + name + '!';
+        };
+    });
+</script>
+
+<div ng-app="applicationName">
+    <div>
+        {{ 'Fucker~' | greet}}
+    </div>
+</div>
+</body>
+</html>

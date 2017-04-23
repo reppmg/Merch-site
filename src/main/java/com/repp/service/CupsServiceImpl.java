@@ -2,7 +2,6 @@ package com.repp.service;
 
 import com.repp.dao.GoodsDao;
 import com.repp.model.Cup;
-import com.repp.model.Good;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,12 +16,8 @@ import java.util.List;
 public class CupsServiceImpl<T, PK> implements GoodsService<Cup, Long> {
 
     @Autowired
-            @Qualifier("cupsDao")
+    @Qualifier("cupsDao")
     GoodsDao<Cup, Long> goodsDao;
-
-    @Autowired
-            @Qualifier("goodsService")
-    GoodsService<Good, Long> goodsService;
 
     @Override
     public List<Cup> getList() {
@@ -32,10 +27,10 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup, Long> {
     @Override
     public Cup getGoodById(Long id) {
         return null;
-    }
+    } //fixme implement
 
     @Override
-    public boolean addGood(Cup good) {
+    public boolean addGood(Cup good) { //fixme make void
         goodsDao.add(good);
         return false;
     }

@@ -17,6 +17,7 @@ CREATE TABLE public.goods
   description VARCHAR(1024)             NOT NULL,
   type_id     INT                       NOT NULL,
   price       BIGINT                    NOT NULL,
+  images      ARRAY,
   CONSTRAINT types_goods_id_fk FOREIGN KEY (type_id) REFERENCES types (id)
 );
 CREATE UNIQUE INDEX goods_id_uindex
@@ -85,3 +86,9 @@ CREATE TABLE public.users (
 );
 CREATE UNIQUE INDEX users_id_uindex
   ON public.users (id);
+
+CREATE TABLE public.good_images
+(
+  good_id BIGINT NOT NULL,
+  images VARCHAR(255) NOT NULL
+);

@@ -3,6 +3,7 @@ package com.repp.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Модель товара
@@ -24,6 +25,9 @@ public class Good {
     private Integer type_id;
     private String name;
     private String description;
+
+    @ElementCollection
+    private List<String> images;
 
 //    @ManyToMany(mappedBy = "goods")
 ////    @JoinTable(

@@ -27,8 +27,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/", "/good/**", "/cup/**").permitAll()
                 .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+                .antMatchers("/h2-console/**").permitAll()
 //                .antMatchers("/user/**", "/order/**").access("hasRole('ADMIN')")
                 .and().formLogin()
                 .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 }

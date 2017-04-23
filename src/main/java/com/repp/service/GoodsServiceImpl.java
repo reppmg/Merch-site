@@ -10,12 +10,11 @@ import java.util.List;
 
 
 @Service("goodsService")
-public class GoodsServiceImpl implements  GoodsService<Good, Long> {
-
+public class GoodsServiceImpl implements GoodsService<Good, Long> {
 
 
     @Autowired
-            @Qualifier("goodsDao")
+    @Qualifier("goodsDao")
     GoodsDao<Good, Long> goodsDao;
 
     @Override

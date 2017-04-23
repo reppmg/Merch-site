@@ -15,6 +15,7 @@ import java.util.List;
 @Repository("cupsDao")
 @SuppressWarnings("unchecked")
 @Transactional
+@Deprecated
 public class CupsDaoImpl implements GoodsDao<Cup, Long>{
 
     @Autowired
