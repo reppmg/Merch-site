@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * Created by 1 on 14.04.2017.
+ * Order model
  */
 
 @Entity
