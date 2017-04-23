@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 /**
- * Created by 1 on 14.04.2017.
+ * user model
  */
 
 @Entity
