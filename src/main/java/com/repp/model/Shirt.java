@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * Created by 1 on 21.04.2017.
+ * Shit model
  */
 @Entity
 @Data
