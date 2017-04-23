@@ -13,25 +13,32 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
-        long iloveyou = Long.MAX_VALUE;
         auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/good/**", "/cup/**").permitAll()
-                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
-                .antMatchers("/h2-console/**").permitAll()
-//                .antMatchers("/user/**", "/order/**").access("hasRole('ADMIN')")
-                .and().formLogin()
-                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
+        http
+                .antMatcher("/**")
+                .authorizeRequests()
+                    .antMatchers("/", "/login**", "/css/**", "/images/**", "/js/**")
+                    .permitAll()
+                .anyRequest()
+                    .authenticated();
+
+//        http.authorizeRequests()
+//                .antMatchers("/", "/good/**", "/cup/**").permitAll()
+//                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')")
+//                .antMatchers("/h2-console/**").permitAll()
+////                .antMatchers("/user/**", "/order/**").access("hasRole('ADMIN')")
+//                .and().formLogin()
+//                .and().exceptionHandling().accessDeniedPage("/Access_Denied");
+//        http.csrf().disable();
+//        http.headers().frameOptions().disable();
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class UsersController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getAllUsers() {
+
+        Principal principal;
         return usersService.getList();
     }
 }

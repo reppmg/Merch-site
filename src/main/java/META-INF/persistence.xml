@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="NewPersistenceUnit">
+        <class>com.repp.model.TypesEntity</class>
+        <class>com.repp.model.GoodsEntity</class>
+        <class>com.repp.model.AddressesEntity</class>
+        <class>com.repp.model.OrdersEntity</class>
+        <class>com.repp.model.GoodOrderEntity</class>
+        <class>com.repp.model.ShirtsEntity</class>
+        <class>com.repp.model.CupsEntity</class>
+        <class>com.repp.model.UsersEntity</class>
+    </persistence-unit>
+</persistence>
