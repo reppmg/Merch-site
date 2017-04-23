@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 
 /**
- * Created by 1 on 14.04.2017.
+ * Cup model
  */
 
 @Entity
