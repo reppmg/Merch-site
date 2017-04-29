@@ -6,8 +6,12 @@ VALUES (1, 100, 'cute t shirt', 'really cute shirt', 1);
 INSERT INTO public.goods (id, price, name, description, type_id)
 VALUES (2, 200, 'cool sweatshirt', 'really cute sweatshirt', 1);
 INSERT INTO public.goods (id, price, name, description, type_id) VALUES (3, 50, 'coffee cup', 'not so good cup', 2);
+INSERT INTO public.goods (id, price, name, description, type_id) VALUES (4, 50, 'coffee cup', 'not so good cup', 2);
+INSERT INTO public.goods (id, price, name, description, type_id) VALUES (5, 50, 'coffee cup', 'not so good cup', 2);
 
 INSERT INTO public.cups (good_id, capacity) VALUES (3, 200);
+INSERT INTO public.cups (good_id, capacity) VALUES (4, 200);
+INSERT INTO public.cups (good_id, capacity) VALUES (5, 200);
 
 INSERT INTO public.shirts (size, color, good_id) VALUES ('M', 'red', 2);
 INSERT INTO public.shirts (size, color, good_id) VALUES ('XXL', 'greed', 1);

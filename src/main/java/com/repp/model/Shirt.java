@@ -18,7 +18,7 @@ public class Shirt {
     private String size;
     private String color;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @MapsId
     private Good good;
 

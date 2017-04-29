@@ -45,7 +45,7 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
     @Override
     public Long addGood(Cup cup) {
         goodsRepository.save(cup.getGood());
-//        cup.setGood_id(good.getId());
+        cup.setGood_id(cup.getGood().getId());
         Cup savedOne = cupsRepository.save(cup);
         return savedOne.getGood_id();
     }

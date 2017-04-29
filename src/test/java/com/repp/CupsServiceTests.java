@@ -8,22 +8,16 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.annotation.Resource;
+import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by 1 on 26.04.2017.
- */
+
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = TestsConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-@Resource(lookup = "classpath:test.resources/data-test.sql")
-@ContextConfiguration(initializers = ConfigFileApplicationContextInitializer.class)
+@SpringBootTest
 public class CupsServiceTests {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -33,6 +27,13 @@ public class CupsServiceTests {
     GoodsService<Cup> cupsService;
 
     @Test
+    public void testGetAllCups(){
+        assertThat(cupsService.getList().size()).isGreaterThanOrEqualTo(3);
+        assertThat(cupsService.getList().size()).isLessThan(4);
+    }
+
+    @Test
+    @Transactional
     public void testAddCup(){
         Cup cup = new Cup();
         Good good = new Good();

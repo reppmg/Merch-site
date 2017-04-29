@@ -43,10 +43,4 @@ public class Good {
     }
 
 
-    public Good(Long price, int type_id, String name, String description) {
-        this.price = price;
-        this.type_id = type_id;
-        this.name = name;
-        this.description = description;
-    }
 }
