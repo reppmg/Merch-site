@@ -4,7 +4,10 @@ import com.repp.model.Cup;
 import com.repp.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public class CupsController {
 
     @Autowired
     @Qualifier("cupsService")
-    GoodsService<Cup, Long> cupsService;
+    GoodsService<Cup> cupsService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Cup> getCups(){
@@ -26,10 +29,13 @@ public class CupsController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public boolean addCup(@RequestBody final Cup cup){
-        return cupsService.addGood(cup);
+    public void addCup(@RequestBody final Cup cup){
+        cupsService.addGood(cup);
     }
 
-
+    @RequestMapping(method = RequestMethod.PUT)
+    public void updateCup(@RequestBody final Cup cup){
+        cupsService.updateGood(cup);
+    }
 
 }

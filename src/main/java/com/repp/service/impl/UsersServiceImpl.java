@@ -1,7 +1,8 @@
-package com.repp.service;
+package com.repp.service.impl;
 
 import com.repp.dao.UsersRepository;
 import com.repp.model.User;
+import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

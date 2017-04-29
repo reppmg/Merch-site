@@ -1,7 +1,8 @@
-package com.repp.service;
+package com.repp.service.impl;
 
 import com.repp.dao.OrdersRepository;
 import com.repp.model.Order;
+import com.repp.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

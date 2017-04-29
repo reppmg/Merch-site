@@ -14,5 +14,10 @@ import java.util.List;
 @Transactional
 public interface CupsRepository extends CrudRepository<Cup, Long> {
 
+    List<Cup> findAll();
+
     List<Cup> findCupsByGood_Name(String name);
+
+    Cup save(Cup cup);
 }
+

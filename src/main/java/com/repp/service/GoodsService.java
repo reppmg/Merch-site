@@ -5,11 +5,13 @@ import java.util.List;
 /**
  * Service, dealing with goods
  */
-public interface GoodsService<T, PK> {
+public interface GoodsService<T> {
 
     List<T> getList();
 
-    T getGoodById(PK id);
+    T findGoodById(Long id);
 
-    boolean addGood(T good);
+    java.lang.Long addGood(T good);
+
+    void updateGood(T good);
 }

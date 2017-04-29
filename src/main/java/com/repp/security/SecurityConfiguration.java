@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
@@ -19,7 +18,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
         auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
-        long iloveyou = Long.MAX_VALUE;
         auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
 
@@ -29,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/", "/good/**", "/cup/**", "/login**", "/js/**", "/css/**", "/fonts/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated();
-        ;
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
