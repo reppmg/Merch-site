@@ -11,7 +11,7 @@ public interface GoodsService<T> {
 
     T findGoodById(Long id);
 
-    java.lang.Long addGood(T good);
+    Long save(T good);
 
     void updateGood(T good);
 }

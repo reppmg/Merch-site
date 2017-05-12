@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * Created by 1 on 17.04.2017.
@@ -13,10 +15,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @EnableOAuth2Sso
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
 
     @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception{
+    OAuth2ClientContext oauth2ClientContext;
+
+    @Autowired
+    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
         auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
@@ -26,9 +32,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/", "/good/**", "/cup/**", "/login**", "/js/**", "/css/**", "/fonts/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .anyRequest().authenticated();
-
-        http.csrf().disable();
+                .anyRequest().authenticated()
+                .and().logout().logoutSuccessUrl("/").permitAll()
+                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
         http.headers().frameOptions().disable();
     }
+
+//    @Bean
+//    @ConfigurationProperties("facebook")
+//    public ClientResources facebook() {
+//        return new ClientResources();
+//    }
+//
+//    private Filter ssoFilter() {
+//        OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/facebook");
+//        OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oauth2ClientContext);
+//        facebookFilter.setRestTemplate(facebookTemplate);
+//        UserInfoTokenServices tokenServices = new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId());
+//        tokenServices.setRestTemplate(facebookTemplate);
+//        facebookFilter.setTokenServices(tokenServices);
+//        return facebookFilter;
+//    }
 }

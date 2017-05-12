@@ -20,6 +20,7 @@ public class ShirtsController {
     @Autowired
     ShirtsRepository shirtsRepository;
 
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Shirt> getAllShirts(){
         return (List<Shirt>) shirtsRepository.findAll();

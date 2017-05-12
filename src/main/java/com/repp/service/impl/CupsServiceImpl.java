@@ -26,8 +26,8 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
     GoodsRepository goodsRepository;
 
     @Override
-    public void updateGood(Cup good) {
-
+    public void updateGood(Cup cup) {
+        cupsRepository.save(cup);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
 
 
     @Override
-    public Long addGood(Cup cup) {
+    public Long save(Cup cup) {
         goodsRepository.save(cup.getGood());
         cup.setGood_id(cup.getGood().getId());
         Cup savedOne = cupsRepository.save(cup);

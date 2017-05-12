@@ -3,6 +3,7 @@ package com.repp;
 import com.repp.model.Cup;
 import com.repp.model.Good;
 import com.repp.service.GoodsService;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -20,22 +21,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class CupsServiceTests {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private
     GoodsService<Cup> cupsService;
 
-    @Test
-    public void testGetAllCups(){
-        assertThat(cupsService.getList().size()).isGreaterThanOrEqualTo(3);
-        assertThat(cupsService.getList().size()).isLessThan(4);
-    }
+    private static Cup cup;
 
-    @Test
-    @Transactional
-    public void testAddCup(){
-        Cup cup = new Cup();
+    @BeforeClass
+    public static void beforeClass() {
+        cup = new Cup();
         Good good = new Good();
         good.setDescription("description");
         good.setName("cup for java");
@@ -43,15 +39,45 @@ public class CupsServiceTests {
         good.setType_id(2);
         cup.setGood(good);
         cup.setCapacity(400);
+    }
 
-        long id = cupsService.addGood(cup);
+    @Test
+    public void testGetAllCups() {
+        assertThat(cupsService.getList().size()).isGreaterThanOrEqualTo(3);
+        assertThat(cupsService.getList().size()).isLessThan(4);
+    }
+
+    @Test
+    @Transactional
+    public void testAddCup() {
+        cup.getGood().setId(null);
+        cup.setGood_id(null);
+
+        long id = cupsService.save(cup);
+        assertThat(id).isNotZero();
 
         Cup foundCup = cupsService.findGoodById(id);
-
         assertThat(cup).isNotNull();
         cup.setGood_id(id);
         cup.getGood().setId(id);
         assertThat(cup).isEqualTo(foundCup);
+
     }
+
+    @Test
+    @Transactional
+    public void testUpdateCup(){
+
+        cupsService.save(cup);
+
+        cup.setCapacity(146);
+
+        cupsService.save(cup);
+
+        Cup foundCup = cupsService.findGoodById(cup.getGood_id());
+        assertThat(foundCup.getCapacity()).isEqualTo(cup.getCapacity());
+    }
+
+
 
 }

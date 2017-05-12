@@ -38,7 +38,7 @@ public class GoodsController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void addGood(@RequestBody final Good good) {
-        goodsService.addGood(good);
+        goodsService.save(good);
     }
 
 }

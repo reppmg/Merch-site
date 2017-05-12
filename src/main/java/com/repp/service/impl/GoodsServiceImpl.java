@@ -29,7 +29,7 @@ public class GoodsServiceImpl implements GoodsService<Good> {
     }
 
     @Override
-    public Long addGood(Good good) {
+    public Long save(Good good) {
         goodsDao.add(good);
         return good.getId();
     }

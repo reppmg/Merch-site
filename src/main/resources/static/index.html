@@ -26,7 +26,7 @@
 
 </head>
 
-<body>
+<body ng-app="merch">
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -43,7 +43,7 @@
             <a class="navbar-brand" href="#">Start Bootstrap</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div ng-controller="merchController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="#">About</a>
@@ -52,13 +52,13 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="insert-cup.html">Add good</a>
+                            <a href="insert-cup.html">Add cup</a>
                         </li>
                         <li>
                             <a href="/good">Get all goods</a>
                         </li>
                         <li>
-                            <a href="/cup">Get all goods</a>
+                            <a href="/cup">Get all cups</a>
                         </li>
                     </ul>
                 </li>
@@ -67,6 +67,9 @@
                 </li>
                 <li>
                     <a href="/login">Login via VK</a>
+                </li>
+                <li>
+                    <a href="#" ng-click="logMeOut()">{{logoutText}}</a>
                 </li>
             </ul>
         </div>
@@ -277,6 +280,12 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
+
+<!--AngularJS-->
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-resource.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/someshit.js"></script>
 
 </body>
 

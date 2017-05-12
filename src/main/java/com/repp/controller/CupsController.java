@@ -30,7 +30,7 @@ public class CupsController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void addCup(@RequestBody final Cup cup){
-        cupsService.addGood(cup);
+        cupsService.save(cup);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
