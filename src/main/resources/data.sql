@@ -26,4 +26,6 @@ INSERT INTO public.good_order (id, good_id, order_id) VALUES (1, 2, 1);
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (2, 3, 1);
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (3, 1, 2);
 
-INSERT INTO public.good_images (good_id, images) VALUES (1, '1.jpg')
+INSERT INTO public.good_images (good_id, images) VALUES (1, 'cute_t.jpg');
+INSERT INTO public.good_images (good_id, images) VALUES (2, 'wildways_shirt.jpeg');
+INSERT INTO public.good_images (good_id, images) VALUES (3, 'coffee_cup.jpg');

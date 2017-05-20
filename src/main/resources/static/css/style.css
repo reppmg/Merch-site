@@ -2,3 +2,7 @@ h1 {
     color: red;
     background-color: blue;
 }
+.preview_image {
+    width: 320px;
+    height: 150px;
+}

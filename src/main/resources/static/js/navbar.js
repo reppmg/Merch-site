@@ -1,5 +1,5 @@
-angular
-    .module("app", [])
+var module = angular.module("merch", []);
+module
     .controller("home", function($http, $location) {
         var self = this;
         self.logout = function() {

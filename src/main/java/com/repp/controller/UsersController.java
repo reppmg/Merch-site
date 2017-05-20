@@ -27,9 +27,9 @@ public class UsersController {
 //    }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Principal user(Principal principal) {
+    public Object user(Principal principal) {
 
-//        return SecurityContextHolder.getContext().getAuthentication();
+//        return SecurityContextHolder.getContext().getAuthentication().getDetails();
 //
         return principal;
     }

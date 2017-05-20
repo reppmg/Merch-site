@@ -1,5 +1,7 @@
-angular.module('merch', [])
-    .controller('merchController', function($scope, $http, $location) {
+var module = angular.module("merch", ['ngRoute']);
+
+module
+    .controller('navigationController', function($scope, $http, $location) {
         $scope.logoutText = "ЛогАут";
         var self = this;
         $scope.logMeOut = function() {
@@ -13,10 +15,13 @@ angular.module('merch', [])
             });
         };
         $http.get("/user").then(function(data) {
-            $scope.user = data.userAuthentication.details.name;
+            $scope.user = data.authenticated;
             $scope.authenticated = true;
         }).catch(function() {
             $scope.user = "N/A";
             $scope.authenticated = false;
+        });
+        $http.get("/good").then(function (data) {
+            $scope.goods = data.data;
         });
     });
