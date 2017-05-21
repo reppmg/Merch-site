@@ -66,16 +66,22 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+            </ul>
+
+
+            <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/login">Login via VK</a>
+                    <a href="/login" ng-hide="authenticated">Login via VK</a>
                 </li>
                 <li>
-                    <a>{{authenticated}}</a>
+                    <a ng-show="authenticated">{{authenticated}}</a>
                 </li>
                 <li>
-                    <a href="#" ng-click="logMeOut()">{{logoutText}}</a>
+                    <a href="#" ng-click="logMeOut()" ng-show="authenticated">{{logoutText}}</a>
                 </li>
             </ul>
+
+
         </div>
         <!-- /.navbar-collapse -->
     </div>
@@ -134,7 +140,10 @@
                     <div class="thumbnail">
                         <!--class="preview_image"-->
                         <!--style="width: 320px; height: 150px"-->
-                        <img src="{{insertImage(good.images)}}" alt="">
+
+
+                        <img ng-src="{{insertImage(good.images)}}" alt="">
+
                         <div class="caption">
                             <h4 class="pull-right">${{good.price}}</h4>
                             <h4><a href="view.html?id={{good.id}}">{{good.name}}</a>
@@ -143,8 +152,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
 
             </div>
@@ -182,7 +189,7 @@
 <script src="js/angular.min.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script src="js/angular-resource.min.js"></script>
-<script src="js/someshit.js"></script>
+<script src="js/navigationContoller.js"></script>
 <script src="js/indexController.js"></script>
 
 </body>

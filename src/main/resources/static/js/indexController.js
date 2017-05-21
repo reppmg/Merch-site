@@ -42,4 +42,9 @@ module
         //     alert(data);
         //     $scope.cups = data;
         // });
+
+        $scope.go = function ( path ) {
+            $location.path( "/view.html?id=" + path );
+        };
+
     });
