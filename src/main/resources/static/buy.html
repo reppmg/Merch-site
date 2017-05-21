@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+
+</head>
+<body ng-app="merch" >
+<!-- Page Content -->
+<div class="container">
+
+
+    <!-- Content Row -->
+    <!-- /.row -->
+    <!-- Contact Form -->
+    <!-- In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
+    <div class="row" ng-controller="buyController">
+        <div class="col-md-8">
+            <h3>Buy a good {{type_name}}</h3>
+            <form name="buyGood" id="buyGood" action="/good"
+                  method="post">
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Zip:</label>
+                        <input type="text" class="form-control" id="zip" name="zip" value="75007">
+                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
+                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
+                        <!--style="resize:none" ></textarea>-->
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Street:</label>
+                        <input type="text" class="form-control" id="street" name="street" value="Avenue Anatole France">
+                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
+                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
+                        <!--style="resize:none" ></textarea>-->
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Address:</label>
+                        <input type="text" class="form-control" id="address" name="address" value="5-0">
+                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
+                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
+                        <!--style="resize:none" ></textarea>-->
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <input id="submitBtn" type="button" class="btn btn-primary" value="Submit" ng-click="post()">
+            </form>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/navigationContoller.js"></script>
+<script src="js/buyController.js"></script>
+</body>
+</html>
