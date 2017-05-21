@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface OrdersService {
     List<Order> getList();
+
+    Long save(Order order);
 }

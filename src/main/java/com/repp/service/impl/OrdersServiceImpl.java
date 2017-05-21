@@ -21,4 +21,9 @@ public class OrdersServiceImpl implements OrdersService {
     public List<Order> getList() {
         return  (List<Order>) ordersRepository.findAll();
     }
+
+    @Override
+    public Long save(Order order) {
+        return ordersRepository.save(order).getId();
+    }
 }

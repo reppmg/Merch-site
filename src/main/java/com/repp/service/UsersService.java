@@ -11,4 +11,6 @@ public interface UsersService{
 
     List<User> findAll();
 
+
+    User findById(Long id);
 }

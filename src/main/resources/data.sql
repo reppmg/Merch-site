@@ -15,7 +15,7 @@ INSERT INTO public.shirts (size, color, good_id) VALUES ('XXL', 'greed', 1);
 INSERT INTO public.addresses (id, zip, street, rest) VALUES (1, '6661488', 'flower st.', 'build. 11 flat 18');
 
 INSERT INTO public.users (id, email, address_id, rights)
-VALUES (1,  'scheisse@shit.kso', 1, 0);
+VALUES (51809846,  'scheisse@shit.kso', 1, 0);
 
 INSERT INTO public.orders (id, address_id, creation_date, phone, user_id)
 VALUES (1, NULL, '2017-03-14', 79111233456, 1);

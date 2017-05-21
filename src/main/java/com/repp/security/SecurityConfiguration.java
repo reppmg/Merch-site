@@ -32,9 +32,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/good/**", "/login**", "/js/**", "/css/**", "/fonts/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/cup/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .antMatchers(HttpMethod.POST, "/cup/**").access("ROLE_ADMIN")
-                .antMatchers("/h2-console/**").permitAll()
                 .and().logout().logoutSuccessUrl("/").permitAll()
                 .and().csrf().disable()/*
                 .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())*/;

@@ -2,6 +2,7 @@ package com.repp.controller;
 
 import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,6 @@ public class UsersController {
     UsersService usersService;
 
 
-
 //    @RequestMapping(method = RequestMethod.GET)
 //    public List<User> getAllUsers() {
 //        return usersService.findAll();
@@ -29,8 +29,8 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.GET)
     public Object user(Principal principal) {
 
-//        return SecurityContextHolder.getContext().getAuthentication().getDetails();
-//
-        return principal;
+        return SecurityContextHolder.getContext().getAuthentication().toString();
+
+//        return userDetails;
     }
 }
