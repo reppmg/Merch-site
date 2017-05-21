@@ -78,8 +78,6 @@ CREATE UNIQUE INDEX cups_good_id_uindex
 
 CREATE TABLE public.users (
   id         BIGINT SERIAL NOT NULL,
-  login      VARCHAR(255)  NOT NULL,
-  password   VARCHAR(255)  NOT NULL,
   email      VARCHAR(255)  NOT NULL,
   address_id BIGINT,
   rights     INT           NOT NULL,
