@@ -22,7 +22,9 @@ public class Good {
 
     private Long price;
 
-    private Integer type_id;
+    @OneToOne()
+    @JoinColumn(name = "type_id")
+    private Type type;
     private String name;
     private String description;
 

@@ -5,6 +5,11 @@ module
         var string = "/good/"+id;
         $http.get(string.toString()).then(function (good) {
             $scope.good = good.data;
+            var type_name = good.data.type.name;
+            $http.get("/"+type_name+"/"+id).then(function (data) {
+                var qualif = data.data;
+                $scope.qualif = qualif;
+            })
         }).catch(function (e) {
             var good = {"name":"something is wrong"};
             $scope.good = good;

@@ -3,6 +3,7 @@ package com.repp.controller;
 import com.repp.dao.ShirtsRepository;
 import com.repp.model.Shirt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,11 @@ public class ShirtsController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Shirt> getAllShirts(){
         return (List<Shirt>) shirtsRepository.findAll();
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Shirt getOneShirt(@PathVariable String id){
+        return shirtsRepository.findOne(Long.valueOf(id));
     }
 
 }

@@ -36,7 +36,7 @@ public class CupsServiceTests {
         good.setDescription("description");
         good.setName("cup for java");
         good.setPrice(1488L);
-        good.setType_id(2);
+//        good.setType_id(2);
         cup.setGood(good);
         cup.setCapacity(400);
     }

@@ -40,7 +40,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
+            <a class="navbar-brand" href="/">Merch</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div ng-controller="navigationController" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -80,6 +80,7 @@
     </div>
     <!-- /.container -->
 </nav>
+
 <!-- Page Content -->
 <div class="container" ng-controller="viewController">
 
@@ -109,6 +110,12 @@
                             <a href="#">{{good.name}}</a>
                         </h4>
                         <p>{{good.description}}</p>
+                        <div ng-if="good.type.name=='cup'">
+                            <p><b>Capacity: </b>{{qualif.capacity}}</p>
+                        </div>
+                        <div ng-if="good.type.name=='shirt'">
+                            <p><b>Size:</b> {{qualif.size}}</p>
+                        </div>
                         <a class="btn btn-primary " href="/good/{{good.id}}">Buy</a>
                     </div>
                     <div class="ratings">

@@ -3,7 +3,6 @@ var module = angular.module("merch", ['ngRoute']);
 module
     .controller('navigationController', function($scope, $http, $location) {
         $scope.logoutText = "ЛогАут";
-        var self = this;
         $scope.logMeOut = function() {
             $http.post('/logout', {}).then(function() {
                 $scope.authenticated = false;
