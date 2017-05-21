@@ -23,10 +23,11 @@ module
 
         // $scope.qualif = qualif;
 
-        function convertFormToJSON(form, good_id) {
+        function convertFormToJSON(form, good_id, email) {
             var array = jQuery(form).serializeArray();
             var json = {};
             json["good_id"] = good_id;
+            json["email"] = email;
             json["address"] = {};
             var goodFields = ['zip', 'street', 'address'];
             jQuery.each(array, function () {
