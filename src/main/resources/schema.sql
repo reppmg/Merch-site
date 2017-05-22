@@ -38,7 +38,7 @@ CREATE TABLE public.orders
   address_id    BIGINT,
   email         VARCHAR(255),
   creation_date TIMESTAMP                      NOT NULL,
-  user_id       BIGINT,
+  user_id       BIGINT ,
   phone         VARCHAR(25)               NOT NULL
 );
 CREATE UNIQUE INDEX orders_id_uindex

@@ -11,4 +11,5 @@ public class OrderDTO {
     Address address;
     Long good_id;
     String email;
+    String phone;
 }

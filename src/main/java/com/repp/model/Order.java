@@ -21,11 +21,12 @@ public class Order {
 
     private Long address_id;
     private String email;
+    private String phone;
     private Date creation_date;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn
-    private User user;
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @JoinColumn
+//    private User user;
 
     @ManyToMany
     @JoinTable(

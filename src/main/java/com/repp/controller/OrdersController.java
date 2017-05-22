@@ -7,6 +7,7 @@ import com.repp.service.AddressService;
 import com.repp.service.GoodsService;
 import com.repp.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,7 @@ public class OrdersController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addOrder(OrderDTO orderDTO){
+    public void addOrder(@RequestBody OrderDTO orderDTO){
         Long addressId = addressService.addAddress(orderDTO.getAddress());
         Long goodId = orderDTO.getGood_id();
         Order order = new Order();
@@ -50,6 +51,7 @@ public class OrdersController {
         order.setGoods(set);
         order.setCreation_date(new Date());
         order.setEmail(orderDTO.getEmail());
+        order.setPhone(orderDTO.getPhone());
 
         ordersService.save(order);
 

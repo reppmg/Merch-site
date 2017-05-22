@@ -18,9 +18,9 @@ INSERT INTO public.users (id, email, address_id, rights)
 VALUES (51809846,  'scheisse@shit.kso', 1, 0);
 
 INSERT INTO public.orders (id, address_id, creation_date, phone, user_id)
-VALUES (1, NULL, '2017-03-14', 79111233456, 1);
+VALUES (1, NULL, '2017-03-14', 79111233456, 51809846);
 INSERT INTO public.orders (id, address_id, creation_date, phone, user_id)
-VALUES (2, NULL, '2017-03-18', 79291234567, 1);
+VALUES (2, NULL, '2017-03-18', 79291234567, 51809846);
 
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (1, 2, 1);
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (2, 3, 1);

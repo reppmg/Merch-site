@@ -14,8 +14,9 @@ module
             });
         };
         $http.get("/user").then(function(data) {
-            $scope.user = data.authenticated;
-            $scope.authenticated = "Logged as " + data.data.userAuthentication.details.response[0].first_name;
+            $scope.user = data.data.authenticated;
+            $scope.authenticated = "Logged as " + data.data
+                    .first_name;
         }).catch(function() {
             $scope.user = "N/A";
             $scope.authenticated = false;

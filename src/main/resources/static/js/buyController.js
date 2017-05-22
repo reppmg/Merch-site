@@ -29,7 +29,7 @@ module
             json["good_id"] = good_id;
             json["email"] = email;
             json["address"] = {};
-            var goodFields = ['zip', 'street', 'address'];
+            var goodFields = ['zip', 'street', 'rest'];
             jQuery.each(array, function () {
                 if (goodFields.indexOf(this.name) !== -1) {
                     json["address"][this.name] = this.value || ''
