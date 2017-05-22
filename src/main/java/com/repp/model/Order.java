@@ -24,9 +24,10 @@ public class Order {
     private String phone;
     private Date creation_date;
 
-//    @OneToOne(fetch = FetchType.EAGER)
-//    @JoinColumn
-//    private User user;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn
+    private User user;
 
     @ManyToMany
     @JoinTable(

@@ -12,4 +12,5 @@ public class OrderDTO {
     Long good_id;
     String email;
     String phone;
+    Long user_id;
 }

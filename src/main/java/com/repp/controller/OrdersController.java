@@ -3,9 +3,11 @@ package com.repp.controller;
 import com.repp.dto.OrderDTO;
 import com.repp.model.Good;
 import com.repp.model.Order;
+import com.repp.model.User;
 import com.repp.service.AddressService;
 import com.repp.service.GoodsService;
 import com.repp.service.OrdersService;
+import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,9 @@ public class OrdersController {
     @Autowired
     GoodsService<Good> goodsService;
 
+    @Autowired
+    UsersService usersService;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Order> getAllOrders() {
         return ordersService.getList();
@@ -52,6 +57,9 @@ public class OrdersController {
         order.setCreation_date(new Date());
         order.setEmail(orderDTO.getEmail());
         order.setPhone(orderDTO.getPhone());
+
+        User user = usersService.findById(orderDTO.getUser_id());
+        order.setUser(user);
 
         ordersService.save(order);
 
