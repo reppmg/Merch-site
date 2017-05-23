@@ -4,6 +4,7 @@ import com.repp.dao.CupsRepository;
 import com.repp.dao.GoodsRepository;
 import com.repp.model.Cup;
 import com.repp.service.GoodsService;
+import com.repp.service.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,6 @@ import java.util.List;
 @Service(value = "cupsService")
 public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
 
-    //    @Autowired
-//    @Qualifier("cupsDao")
-//    GoodsDao<Cup, Long> goodsDao;
     @Autowired
     CupsRepository cupsRepository;
 
@@ -41,12 +39,14 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
     }
 
 
-
     @Override
     public Long save(Cup cup) {
+        cup.getGood().setType(Types.cupType);
         goodsRepository.save(cup.getGood());
         cup.setGood_id(cup.getGood().getId());
         Cup savedOne = cupsRepository.save(cup);
+
+
         return savedOne.getGood_id();
     }
 }

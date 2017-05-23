@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * Created by 1 on 17.04.2017.
@@ -36,24 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .antMatchers(HttpMethod.POST, "/cup/**").access("ROLE_ADMIN")
                 .and().logout().logoutSuccessUrl("/").permitAll()
-                .and().csrf().disable()/*
-                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())*/;
+//                .and().csrf().disable()
+                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+        ;
         http.headers().frameOptions().disable();
     }
 
-//    @Bean
-//    @ConfigurationProperties("facebook")
-//    public ClientResources facebook() {
-//        return new ClientResources();
-//    }
-//
-//    private Filter ssoFilter() {
-//        OAuth2ClientAuthenticationProcessingFilter facebookFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/facebook");
-//        OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(facebook(), oauth2ClientContext);
-//        facebookFilter.setRestTemplate(facebookTemplate);
-//        UserInfoTokenServices tokenServices = new UserInfoTokenServices(facebookResource().getUserInfoUri(), facebook().getClientId());
-//        tokenServices.setRestTemplate(facebookTemplate);
-//        facebookFilter.setTokenServices(tokenServices);
-//        return facebookFilter;
-//    }
 }

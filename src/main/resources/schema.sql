@@ -77,7 +77,7 @@ CREATE UNIQUE INDEX cups_good_id_uindex
   ON public.cups (good_id);
 
 CREATE TABLE public.users (
-  id         BIGINT SERIAL NOT NULL,
+  id         BIGINT UNIQUE NOT NULL,
   email      VARCHAR(255)  NOT NULL,
   address_id BIGINT,
   rights     INT           NOT NULL,

@@ -1,5 +1,6 @@
 package com.repp.controller;
 
+import com.repp.model.User;
 import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -29,12 +30,15 @@ public class UsersController {
 //    }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object user(Principal principal) {
+    public Object getUser(Principal principal) {
 
         OAuth2Authentication authentication = (OAuth2Authentication) principal;
         Map details = (Map) authentication.getUserAuthentication().getDetails();
         Map response = (Map) ((List) details.get("response")).get(0);
         response.put("authenticated", true);
+
+        User user = new User();
+//        usersService.save();
         return response;
 
 //        return principal;

@@ -19,6 +19,7 @@ module
         $scope.logMeOut = function() {
             $http.post('/logout', {}).then(function() {
                 $scope.authenticated = false;
+                sharedProperties.setProperty(null);
                 $location.path("/");
             }).catch(function(data) {
                 console.log("Logout failed");
