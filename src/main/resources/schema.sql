@@ -81,6 +81,7 @@ CREATE TABLE public.users (
   email      VARCHAR(255)  NOT NULL,
   address_id BIGINT,
   rights     INT           NOT NULL,
+  phone      VARCHAR(25)
 );
 CREATE UNIQUE INDEX users_id_uindex
   ON public.users (id);

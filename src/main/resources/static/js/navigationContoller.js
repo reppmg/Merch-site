@@ -28,9 +28,9 @@ module
             });
         };
         $http.get("/user").then(function(data) {
-            if (!data.data.registered){
-                $location.path( "/register" + path );
-            }
+            // if (!data.data.registered){
+            //     $location.path( "/register" + path );
+            // }
             $scope.user = data.data.authenticated;
 
             sharedProperties.setProperty(data.data.uid);
