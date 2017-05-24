@@ -20,6 +20,7 @@ public class User {
     private Long id;
 
     private String email;
+    private String phone;
     private Integer rights;
 
     @OneToOne
