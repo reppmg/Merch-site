@@ -24,11 +24,6 @@ public class UsersController {
     UsersService usersService;
 
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<User> getAllUsers() {
-//        return usersService.findAll();
-//    }
-
     @RequestMapping(method = RequestMethod.GET)
     public Object getUser(Principal principal) {
 
@@ -37,10 +32,12 @@ public class UsersController {
         Map response = (Map) ((List) details.get("response")).get(0);
         response.put("authenticated", true);
 
-        User user = new User();
-//        usersService.save();
+        Long id = Long.valueOf(response.get("uid").toString());
+        User user = usersService.findById(id);
+        if (user == null){
+            response.put("registered", false);
+        }
         return response;
 
-//        return principal;
     }
 }

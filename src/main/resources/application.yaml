@@ -1,0 +1,25 @@
+logging:
+    level:
+        org:
+            springframework:
+                security: DEBUG
+vk:
+  client:
+      accessTokenUri: https://oauth.vk.com/access_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      clientId: 5998769
+      clientSecret: QeHq673M5Pdtl32w80du
+      tokenName: access_token
+      userAuthorizationUri: https://oauth.vk.com/authorize
+  resource:
+      userInfoUri: https://api.vk.com/method/users.get
+spring:
+    datasource:
+        url: jdbc:h2:mem:merch
+    h2:
+        console:
+            enabled: true
+    jpa:
+        hibernate:
+            ddl-auto: validate
