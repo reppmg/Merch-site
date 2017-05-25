@@ -1,5 +1,6 @@
 package com.repp.service;
 
+import com.repp.model.Address;
 import com.repp.model.Order;
 
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 public interface OrdersService {
     List<Order> getList();
 
-    Long save(Order order);
+    Long save(Order order, Address address, Long userId, Long goodId);
 }
