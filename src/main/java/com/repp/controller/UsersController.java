@@ -1,6 +1,7 @@
 package com.repp.controller;
 
 import com.repp.model.User;
+import com.repp.service.AddressService;
 import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -22,14 +23,25 @@ public class UsersController {
     @Autowired
     UsersService usersService;
 
+    @Autowired
+    AddressService addressService;
+
     @RequestMapping(method = RequestMethod.POST)
     public void registerUser(@RequestBody User user){
         Long id = user.getId();
         User usedInDB = usersService.findById(id);
+
         if (usedInDB == null){
             //register
+            user.setRights(1);
+            addressService.addAddress(user.getAddress());
+            usersService.save(user);
+        } else {
+            //update admin
+            addressService.addAddress(user.getAddress());
             usersService.save(user);
         }
+
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,6 +56,8 @@ public class UsersController {
         User user = usersService.findById(id);
         if (user == null) {
             response.put("registered", false);
+        } else {
+            response.put("phone", user.getPhone());
         }
         return response;
 

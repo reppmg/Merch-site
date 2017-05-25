@@ -7,4 +7,5 @@ import com.repp.model.Address;
  */
 public interface AddressService {
     Long addAddress(Address address);
+
 }
