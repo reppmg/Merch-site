@@ -19,6 +19,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * Tests for service layer
  * Created by 1 on 25.05.2017.
  */
 @RunWith(SpringRunner.class)
@@ -36,11 +37,12 @@ public class OrdersServiceTest {
     private UsersService usersService;
 
     @Autowired
-    GoodsService<Good> goodsService;
+    private GoodsService<Good> goodsService;
+    private Order order;
 
     @Before
-    public void init(){
-        final Order order = new Order();
+    public void init() {
+        order = new Order();
         order.setCreation_date(new Date());
         order.setEmail("pi@ka.chu");
         order.setPhone("88005553535");
@@ -56,10 +58,6 @@ public class OrdersServiceTest {
         goods.add(good);
         order.setGoods(goods);
 
-        final Order saved = ordersRepository.save(order);
-        final Order found = ordersRepository.findOne(order.getId());
-        assertThat(saved.getUser().getEmail()).isNotNull();
-        saved.getGoods().forEach(x ->{assertThat(x.getName()).isNotNull();});
     }
 
 
@@ -72,6 +70,10 @@ public class OrdersServiceTest {
     @Test
     public void save() throws Exception {
 
+        final Order saved = ordersRepository.save(order);
+        final Order found = ordersRepository.findOne(order.getId());
+        assertThat(saved.getUser().getEmail()).isNotNull();
+        saved.getGoods().forEach(x -> assertThat(x.getName()).isNotNull());
     }
 
 }
