@@ -17,7 +17,7 @@ public class GoodsController {
 
     @Autowired
     @Qualifier("goodsService")
-    GoodsService<Good> goodsService;
+    private GoodsService<Good> goodsService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Good> getGoods() {
@@ -25,8 +25,8 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/{goodId}", method = RequestMethod.GET)
-    public Good getGood(@PathVariable String goodId) {
-        int id;
+    public Good getGood(@PathVariable final String goodId) {
+        final int id;
         try {
             id = Integer.parseInt(goodId);
         } catch (NumberFormatException e) {

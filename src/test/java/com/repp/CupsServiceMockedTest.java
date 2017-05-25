@@ -25,11 +25,6 @@ public class CupsServiceMockedTest {
     @InjectMocks
     private CupsServiceImpl cupsService;
 
-//
-//    @Test
-//    public void testAddCup(){
-//        when(goodsRepository.save().then()
-//    }
 
     @Test
     public void testGetList() {

@@ -15,15 +15,15 @@ import java.util.List;
 public class OrdersServiceImpl implements OrdersService {
 
     @Autowired
-    OrdersRepository ordersRepository;
+    private OrdersRepository ordersRepository;
 
     @Override
     public List<Order> getList() {
-        return  (List<Order>) ordersRepository.findAll();
+        return (List<Order>) ordersRepository.findAll();
     }
 
     @Override
-    public Long save(Order order) {
+    public Long save(final Order order) {
         return ordersRepository.save(order).getId();
     }
 }

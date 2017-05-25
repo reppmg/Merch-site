@@ -16,9 +16,8 @@ public class AddressServiceImpl implements AddressService {
     AddressRepository addressRepository;
 
     @Override
-    public Long addAddress(Address address) {
-        Long id = addressRepository.save(address).getId();
-        return id;
+    public Long addAddress(final Address address) {
+        return addressRepository.save(address).getId();
     }
 
 }

@@ -18,25 +18,25 @@ public class CupsController {
 
     @Autowired
     @Qualifier("cupsService")
-    GoodsService<Cup> cupsService;
+    private GoodsService<Cup> cupsService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Cup> getCups(){
+    public List<Cup> getCups() {
         return cupsService.getList();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Cup getOneCup(@PathVariable String id){
+    public Cup getOneCup(@PathVariable final String id) {
         return cupsService.findGoodById(Long.valueOf(id));
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addCup(@RequestBody final Cup cup){
+    public void addCup(@RequestBody final Cup cup) {
         cupsService.save(cup);
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateCup(@RequestBody final Cup cup){
+    public void updateCup(@RequestBody final Cup cup) {
         cupsService.updateGood(cup);
     }
 

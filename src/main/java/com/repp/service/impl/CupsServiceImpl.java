@@ -24,7 +24,7 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
     GoodsRepository goodsRepository;
 
     @Override
-    public void updateGood(Cup cup) {
+    public void updateGood(final Cup cup) {
         cupsRepository.save(cup);
     }
 
@@ -34,17 +34,17 @@ public class CupsServiceImpl<T, PK> implements GoodsService<Cup> {
     }
 
     @Override
-    public Cup findGoodById(Long id) {
+    public Cup findGoodById(final Long id) {
         return cupsRepository.findOne(id);
     }
 
 
     @Override
-    public Long save(Cup cup) {
+    public Long save(final Cup cup) {
         cup.getGood().setType(Types.cupType);
         goodsRepository.save(cup.getGood());
         cup.setGood_id(cup.getGood().getId());
-        Cup savedOne = cupsRepository.save(cup);
+        final Cup savedOne = cupsRepository.save(cup);
 
 
         return savedOne.getGood_id();

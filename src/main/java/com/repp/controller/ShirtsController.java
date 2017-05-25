@@ -28,7 +28,7 @@ public class ShirtsController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Shirt getOneShirt(@PathVariable String id){
+    public Shirt getOneShirt(@PathVariable final String id){
         return shirtsRepository.findOne(Long.valueOf(id));
     }
 

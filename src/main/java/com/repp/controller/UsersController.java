@@ -27,9 +27,9 @@ public class UsersController {
     AddressService addressService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void registerUser(@RequestBody User user){
-        Long id = user.getId();
-        User usedInDB = usersService.findById(id);
+    public void registerUser(@RequestBody final User user){
+        final Long id = user.getId();
+        final User usedInDB = usersService.findById(id);
 
         if (usedInDB == null){
             //register
@@ -45,15 +45,15 @@ public class UsersController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public Object getUser(Principal principal) {
+    public Object getUser(final Principal principal) {
 
-        OAuth2Authentication authentication = (OAuth2Authentication) principal;
-        Map details = (Map) authentication.getUserAuthentication().getDetails();
-        Map response = (Map) ((List) details.get("response")).get(0);
+        final OAuth2Authentication authentication = (OAuth2Authentication) principal;
+        final Map details = (Map) authentication.getUserAuthentication().getDetails();
+        final Map response = (Map) ((List) details.get("response")).get(0);
         response.put("authenticated", true);
 
-        Long id = Long.valueOf(response.get("uid").toString());
-        User user = usersService.findById(id);
+        final Long id = Long.valueOf(response.get("uid").toString());
+        final User user = usersService.findById(id);
         if (user == null) {
             response.put("registered", false);
         } else {

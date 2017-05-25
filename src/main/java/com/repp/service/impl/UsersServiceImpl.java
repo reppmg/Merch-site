@@ -15,7 +15,7 @@ import java.util.List;
 public class UsersServiceImpl implements UsersService {
 
     @Autowired
-    UsersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     @Override
     public List<User> findAll() {
@@ -23,12 +23,12 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public User findById(Long id) {
+    public User findById(final Long id) {
         return usersRepository.findOne(id);
     }
 
     @Override
-    public User save(User user) {
+    public User save(final User user) {
         return usersRepository.save(user);
     }
 }

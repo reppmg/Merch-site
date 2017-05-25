@@ -45,20 +45,22 @@ public class OrdersController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addOrder(@RequestBody OrderDTO orderDTO){
-        Long addressId = addressService.addAddress(orderDTO.getAddress());
-        Long goodId = orderDTO.getGood_id();
-        Order order = new Order();
+    public void addOrder(@RequestBody final OrderDTO orderDTO){
+        final Long addressId = addressService.addAddress(orderDTO.getAddress());
+        final Long goodId = orderDTO.getGood_id();
+        final Order order = new Order();
         order.setAddress_id(addressId);
-        Good good = goodsService.findGoodById(goodId);
-        Set<Good> set = new HashSet<>();
+
+        final Good good = goodsService.findGoodById(goodId);
+        final Set<Good> set = new HashSet<>();
+        //TODO rework
         set.add(good);
         order.setGoods(set);
         order.setCreation_date(new Date());
         order.setEmail(orderDTO.getEmail());
         order.setPhone(orderDTO.getPhone());
 
-        User user = usersService.findById(orderDTO.getUser_id());
+        final User user = usersService.findById(orderDTO.getUser_id());
         order.setUser(user);
 
         ordersService.save(order);

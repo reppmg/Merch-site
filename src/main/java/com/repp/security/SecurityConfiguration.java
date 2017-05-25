@@ -34,13 +34,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     OAuth2ClientContext oauth2ClientContext;
 
     @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
         auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/", "/good/**", "/login**", "/js/**", "/css/**", "/fonts/**").permitAll()
                 .antMatchers(HttpMethod.GET,"/cup/**", "/shirt/**").permitAll()
@@ -57,10 +57,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     public Filter ssoFilter() {
-        OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/vk");
-        OAuth2RestTemplate vkTemplate = new OAuth2RestTemplate(vk(), oauth2ClientContext);
+        final OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/vk");
+        final OAuth2RestTemplate vkTemplate = new OAuth2RestTemplate(vk(), oauth2ClientContext);
         vkFilter.setRestTemplate(vkTemplate);
-        UserInfoTokenServices tokenServices = new UserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
+        final UserInfoTokenServices tokenServices = new UserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
         tokenServices.setRestTemplate(vkTemplate);
         vkFilter.setTokenServices(tokenServices);
         return vkFilter;
@@ -80,8 +80,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public FilterRegistrationBean oauth2ClientFilterRegistration(
-            OAuth2ClientContextFilter filter) {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
+            final OAuth2ClientContextFilter filter) {
+        final FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(filter);
         registration.setOrder(-100);
         return registration;

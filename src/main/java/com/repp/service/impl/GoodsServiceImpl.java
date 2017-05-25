@@ -16,10 +16,10 @@ public class GoodsServiceImpl implements GoodsService<Good> {
 
     @Autowired
     @Qualifier("goodsDao")
-    GoodsDao<Good, Long> goodsDao;
+    private GoodsDao<Good, Long> goodsDao;
 
     @Override
-    public Good findGoodById(Long id) {
+    public Good findGoodById(final Long id) {
         return goodsDao.getGoodById(id);
     }
 
@@ -29,13 +29,13 @@ public class GoodsServiceImpl implements GoodsService<Good> {
     }
 
     @Override
-    public Long save(Good good) {
+    public Long save(final Good good) {
         goodsDao.add(good);
         return good.getId();
     }
 
     @Override
-    public void updateGood(Good good) {
+    public void updateGood(final Good good) {
 
     }
 }
