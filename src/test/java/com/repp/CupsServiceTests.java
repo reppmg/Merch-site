@@ -43,8 +43,8 @@ public class CupsServiceTests {
 
     @Test
     public void testGetAllCups() {
-        assertThat(cupsService.getList().size()).isGreaterThanOrEqualTo(3);
-        assertThat(cupsService.getList().size()).isLessThan(4);
+        assertThat(cupsService.getList().size()).isGreaterThanOrEqualTo(1);
+        assertThat(cupsService.getList().size()).isLessThan(2);
     }
 
     @Test

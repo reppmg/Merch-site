@@ -12,10 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -25,8 +24,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by 1 on 19.04.2017.
  */
+
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = TestsConfiguration.class, initializers = ConfigFileApplicationContextInitializer.class)
+@SpringBootTest
 public class DaoTests implements ApplicationContextAware{
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
