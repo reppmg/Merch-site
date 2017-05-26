@@ -12,14 +12,8 @@ module.service('sharedProperties', function () {
         }
     };
 });
-// module.config(function ($locationProvider) {
-//     $locationProvider.html5Mode(true);
-//     // $locationProvider.hashPrefix('');
-// });
 module
     .controller('navigationController', function ($scope, $http, $location, sharedProperties) {
-        // $locationProvider.html5Mode(false);
-        // $locationProvider.hashPrefix('');
         $scope.logoutText = "LogOut";
         $scope.logMeOut = function () {
             $http.post('/logout', {}).then(function () {
@@ -33,11 +27,8 @@ module
             });
         };
         $http.get("/user").then(function (data) {
-            // if (!data.data.registered) {
-            //     $location.url("/registration.html?id=" + 123687932534);
-            // }
             $scope.user = data.data.authenticated;
-
+            $scope.user_id  = data.data.uid;
             sharedProperties.setProperty(data.data.uid);
             $scope.authenticated = "Logged as " + data.data
                     .first_name;

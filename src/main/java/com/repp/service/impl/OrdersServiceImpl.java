@@ -38,6 +38,13 @@ public class OrdersServiceImpl implements OrdersService {
 
 
     @Override
+    public List<Order> getList(final Long userId) {
+        final List<Order> allOrders = (List<Order>) ordersRepository.findAll();
+
+        return null;
+    }
+
+    @Override
     public List<Order> getList() {
         return (List<Order>) ordersRepository.findAll();
     }

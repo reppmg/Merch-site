@@ -41,4 +41,5 @@ public class GoodsController {
         goodsService.save(good);
     }
 
+
 }

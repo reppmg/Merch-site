@@ -11,5 +11,7 @@ import java.util.List;
 public interface OrdersService {
     List<Order> getList();
 
+    List<Order> getList(Long userId);
+
     Long save(Order order, Address address, Long userId, Long goodId);
 }

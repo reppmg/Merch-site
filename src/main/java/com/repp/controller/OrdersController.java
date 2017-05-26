@@ -1,13 +1,11 @@
 package com.repp.controller;
 
+import com.repp.dao.OrdersDao;
 import com.repp.dto.OrderDTO;
 import com.repp.model.Order;
 import com.repp.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +20,10 @@ public class OrdersController {
 
     @Autowired
     private OrdersService ordersService;
+
+    @Autowired
+    private OrdersDao ordersDao;
+
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Order> getAllOrders() {
@@ -39,6 +41,18 @@ public class OrdersController {
 
 
         ordersService.save(order, orderDTO.getAddress(), orderDTO.getUser_id(), orderDTO.getGood_id());
+
+    }
+
+    @RequestMapping("/user/{pathUserId}")
+    public List<Order> getOrdersForUser(@PathVariable final String pathUserId){
+        final Long uid;
+        try {
+            uid = (long) Integer.parseInt(pathUserId);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        return ordersDao.getOrders(uid);
 
     }
 }
