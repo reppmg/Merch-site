@@ -23,15 +23,6 @@ public class OrdersController {
     @Autowired
     private OrdersService ordersService;
 
-//    @Autowired
-//    AddressService addressService;
-//
-//    @Autowired
-//    GoodsService<Good> goodsService;
-//
-//    @Autowired
-//    UsersService usersService;
-
     @RequestMapping(method = RequestMethod.GET)
     public List<Order> getAllOrders() {
         return ordersService.getList();
@@ -42,21 +33,10 @@ public class OrdersController {
         final Long goodId = orderDTO.getGood_id();
         final Order order = new Order();
 
-
-//        final Long addressId = addressService.addAddress(orderDTO.getAddress());
-//        order.setAddress_id(addressId);
-
-//        final Good good = goodsService.findGoodById(goodId);
-//        final Set<Good> set = new HashSet<>();
-        //TODO rework
-//        set.add(good);
-//        order.setGoods(set);
         order.setCreation_date(new Date());
         order.setEmail(orderDTO.getEmail());
         order.setPhone(orderDTO.getPhone());
 
-//        final User user = usersService.findById(orderDTO.getUser_id());
-//        order.setUser(user);
 
         ordersService.save(order, orderDTO.getAddress(), orderDTO.getUser_id(), orderDTO.getGood_id());
 

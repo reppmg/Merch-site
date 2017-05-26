@@ -58,6 +58,9 @@ public class UsersController {
             response.put("registered", false);
         } else {
             response.put("phone", user.getPhone());
+            response.put("address", user.getAddress());
+            response.put("email", user.getEmail());
+            response.put("registered", true);
         }
         return response;
 

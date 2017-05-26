@@ -7,7 +7,7 @@
     <link href="css/shop-homepage.css" rel="stylesheet"/>
 
 </head>
-<body ng-app="merch" >
+<body ng-app="merch">
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -80,51 +80,60 @@
     <div class="row" ng-controller="buyController">
         <div class="col-md-8">
             <h3>Buy a good {{type_name}}</h3>
-            <form name="buyGood" id="buyGood" action="/good"
+            <form name="buyGood" id="buyGood"
                   method="post">
-                <div class="control-group form-group">
+                <div class="control-group form-group" ng-show="useSavedAddress">
                     <div class="controls">
-                        <label>Zip:</label>
-                        <input type="text" class="form-control" id="zip" name="zip" value="75007">
-                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
-                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
-                        <!--style="resize:none" ></textarea>-->
+                        <label>Address: {{address}}; </label>
+                        <a ng-click="changeUsingSavedAddress()">change</a>
                     </div>
                 </div>
                 <div class="control-group form-group">
+                    <div class="controls" ng-hide="useSavedAddress">
+                        <label>Zip:</label>
+                        <input type="text" class="form-control" id="zip" name="zip" value="75007">
+                    </div>
+                </div>
+                <div class="control-group form-group" ng-hide="useSavedAddress">
                     <div class="controls">
                         <label>Street:</label>
                         <input type="text" class="form-control" id="street" name="street" value="Avenue Anatole France">
-                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
-                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
-                        <!--style="resize:none" ></textarea>-->
                     </div>
                 </div>
-                <div class="control-group form-group">
+                <div class="control-group form-group" ng-hide="useSavedAddress">
                     <div class="controls">
                         <label>Address:</label>
                         <input type="text" class="form-control" id="rest" name="rest" value="5-0">
-                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
-                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
-                        <!--style="resize:none" ></textarea>-->
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" ng-click="changeUsingSavedAddress()">Use saved address</button>
+                </div>
+                <div class="control-group form-group" ng-show="useSavedEmail">
+                    <div class="controls">
+                        <label>Email: {{email}}; </label>
+                        <a ng-click="changeUsingSavedEmail()">change</a>
                     </div>
                 </div>
-                <div class="control-group form-group">
+                <div class="control-group form-group" ng-hide="useSavedEmail">
                     <div class="controls">
                         <label>Email:</label>
-                        <input type="text" class="form-control" id="email" name="email" value="pikachu@gmail.com">
-                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
-                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
-                        <!--style="resize:none" ></textarea>-->
+                        <input type="text" class="form-control" id="email" name="email">
+                        <br>
+                        <button class="btn btn-primary" ng-click="changeUsingSavedEmail()">Use saved email</button>
                     </div>
                 </div>
-                <div class="control-group form-group">
+                <div class="control-group form-group" ng-show="useSavedPhone">
+                    <div class="controls">
+                        <label>Phone: {{phone}}; </label>
+                        <a ng-click="changeUsingSavedPhone()">change</a>
+                    </div>
+                </div>
+                <div class="control-group form-group" ng-hide="useSavedPhone">
                     <div class="controls">
                         <label>Phone:</label>
-                        <input type="text" class="form-control" id="phone" name="phone" value="88005553535">
-                        <!--<textarea rows="10" cols="100" class="form-control" id="description" name="description"-->
-                        <!--required data-validation-required-message="Please enter your message" maxlength="999"-->
-                        <!--style="resize:none" ></textarea>-->
+                        <input type="text" class="form-control" id="phone" name="phone" >
+                        <br>
+                        <button class="btn btn-primary" ng-click="changeUsingSavedPhone()">Use saved phone</button>
                     </div>
                 </div>
                 <div id="success"></div>

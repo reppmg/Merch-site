@@ -3,6 +3,19 @@
  */
 module
     .controller('registrationController', function ($scope, $http, $location, sharedProperties) {
+
+        $http.get('/user').then(function (data) {
+            $scope.user_id = data.data.uid;
+            if (data.data.registered) {
+                window.location.replace("/");
+                // $scope.$apply($location.path("/home"));
+            }
+            $scope.name = data.data.first_name;
+            $scope.surname = data.data.last_name;
+            $scope.username = $scope.name + " " + $scope.surname;
+        }).catch(function (e) {
+            alert("something has gone completely wrong. Try again please!")
+        });
         var path = $location.absUrl();
 
         function convertFormToJSON(form) {
@@ -10,7 +23,7 @@ module
             var json = {};
             json["address"] = {};
             var goodFields = ['zip', 'street', 'rest'];
-                jQuery.each(array, function () {
+            jQuery.each(array, function () {
                 if (goodFields.indexOf(this.name) !== -1) {
                     json["address"][this.name] = this.value || ''
                 } else {
@@ -23,7 +36,9 @@ module
         $scope.post = function () {
             var s = $("#registration");
             var user = convertFormToJSON(s);
-            user["user_id"] = sharedProperties.getProperty();
+            user["id"] = $scope.user_id;
+            user["name"] = $scope.name;
+            user["surname"] = $scope.surname;
             $http.post('/user', user).then(alert("Success"))
 
         }

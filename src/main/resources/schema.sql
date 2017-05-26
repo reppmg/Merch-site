@@ -37,8 +37,8 @@ CREATE TABLE public.orders
   id            BIGINT SERIAL PRIMARY KEY NOT NULL,
   address_id    BIGINT,
   email         VARCHAR(255),
-  creation_date TIMESTAMP                      NOT NULL,
-  user_id       BIGINT ,
+  creation_date TIMESTAMP                 NOT NULL,
+  user_id       BIGINT,
   phone         VARCHAR(25)               NOT NULL
 );
 CREATE UNIQUE INDEX orders_id_uindex
@@ -48,8 +48,8 @@ CREATE UNIQUE INDEX orders_id_uindex
 CREATE TABLE public.good_order
 (
   id       BIGINT SERIAL PRIMARY KEY NOT NULL,
-  good_id  BIGINT                       NOT NULL,
-  order_id BIGINT                       NOT NULL,
+  good_id  BIGINT                    NOT NULL,
+  order_id BIGINT                    NOT NULL,
   CONSTRAINT good_order_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id),
   CONSTRAINT good_order_orders_id_fk FOREIGN KEY (order_id) REFERENCES orders (id)
 );
@@ -60,7 +60,7 @@ CREATE TABLE public.shirts
 (
   size    VARCHAR(10)  NOT NULL,
   color   VARCHAR(255) NOT NULL,
-  good_id BIGINT          NOT NULL PRIMARY KEY NOT NULL,
+  good_id BIGINT       NOT NULL PRIMARY KEY NOT NULL,
   CONSTRAINT shirts_goods_id_fk FOREIGN KEY (good_id) REFERENCES goods (id)
 );
 CREATE UNIQUE INDEX shirts_pkey
@@ -78,6 +78,8 @@ CREATE UNIQUE INDEX cups_good_id_uindex
 
 CREATE TABLE public.users (
   id         BIGINT UNIQUE NOT NULL,
+  name       VARCHAR(255)  NOT NULL,
+  surname    VARCHAR(255)  NOT NULL,
   email      VARCHAR(255)  NOT NULL,
   address_id BIGINT,
   rights     INT           NOT NULL,
@@ -88,6 +90,6 @@ CREATE UNIQUE INDEX users_id_uindex
 
 CREATE TABLE public.good_images
 (
-  good_id BIGINT NOT NULL,
-  images VARCHAR(255) NOT NULL
+  good_id BIGINT       NOT NULL,
+  images  VARCHAR(255) NOT NULL
 );

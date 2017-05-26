@@ -14,13 +14,13 @@ INSERT INTO public.shirts (size, color, good_id) VALUES ('XXL', 'greed', 1);
 
 INSERT INTO public.addresses (id, zip, street, rest) VALUES (1, '6661488', 'flower st.', 'build. 11 flat 18');
 
-INSERT INTO public.users (id, email, address_id, rights)
-VALUES (51809846,  'scheisse@shit.kso', 1, 0);
+INSERT INTO public.users (id, name, surname, email, phone,  address_id, rights)
+VALUES (51809846, 'Georgy', 'Kravochenko',  'scheisse@shit.kso', 7987123456, 1, 0);
 
 INSERT INTO public.orders (id, address_id, creation_date, phone, user_id)
-VALUES (1, NULL, '2017-03-14', 79111233456, 51809846);
+VALUES (1, 1, '2017-03-14', 79111233456, 51809846);
 INSERT INTO public.orders (id, address_id, creation_date, phone, user_id)
-VALUES (2, NULL, '2017-03-18', 79291234567, 51809846);
+VALUES (2, 1, '2017-03-18', 79291234567, 51809846);
 
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (1, 2, 1);
 INSERT INTO public.good_order (id, good_id, order_id) VALUES (2, 3, 1);

@@ -44,12 +44,23 @@ public class OrdersServiceImpl implements OrdersService {
 
     @Override
     public Long save(final Order order, final Address address, final Long userId, final Long goodId) {
-        final Long addressId = addressService.addAddress(address);
+        final User user = usersService.findById(userId);
+        order.setUser(user);
+
+        final Long addressId;
+        if (address == null) {
+            addressId = user.getAddress().getId();
+        } else {
+            addressId = addressService.addAddress(address);
+        }
         order.setAddress_id(addressId);
 
-        final User user = new User();
-        user.setId(userId);
-        order.setUser(user);
+        if (order.getPhone() == null){
+            order.setPhone(user.getPhone());
+        }
+        if (order.getEmail() == null){
+            order.setEmail(user.getEmail());
+        }
 
         final Set<Good> goods = new HashSet<>();
         final Good good = new Good();
