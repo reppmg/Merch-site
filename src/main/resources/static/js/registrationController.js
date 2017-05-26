@@ -39,7 +39,7 @@ module
             user["id"] = $scope.user_id;
             user["name"] = $scope.name;
             user["surname"] = $scope.surname;
-            $http.post('/user', user).then(alert("Success"))
+            $http.post('/user', user).then(window.location.replace("/"))
 
         }
 

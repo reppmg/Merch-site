@@ -51,10 +51,10 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/login" ng-hide="authenticated">Login via VK</a>
+                    <a href="/login/vk" ng-hide="authenticated">Login via VK</a>
                 </li>
                 <li>
-                    <a ng-show="authenticated">{{authenticated}}</a>
+                    <a ng-show="authenticated" href="cabinet.html?id={{user_id}}">{{authenticated}}</a>
                 </li>
                 <li>
                     <a href="#" ng-click="logMeOut()" ng-show="authenticated">{{logoutText}}</a>

@@ -5,7 +5,7 @@
 
     <groupId>com.repp</groupId>
     <artifactId>merch</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>merch</name>
@@ -109,6 +109,13 @@
             <!--<artifactId>spring-boot-starter-test</artifactId>-->
             <!---->
         <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.webjars/reveal.js -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>reveal.js</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+
 
     </dependencies>
 

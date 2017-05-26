@@ -30,6 +30,8 @@ public class UsersServiceTests {
     public void init(){
         user = new User();
         user.setId(51809846L);
+        user.setName("Name");
+        user.setSurname("Name");
         user.setEmail("pukachu@poke.mon");
         user.setPhone("88005553535");
         Address address = new Address(null, "615000", "Avenue Anatole", "5-6");

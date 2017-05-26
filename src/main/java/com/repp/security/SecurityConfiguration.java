@@ -39,12 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     OAuth2ClientContext oauth2ClientContext;
 
-//    @Autowired
-//    UserDetailsService userService;
-
     @Autowired
     public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userService);
         auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
         auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
@@ -67,7 +63,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/good/**", "/login**", "/js/**", "/css/**", "/fonts/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/cup/**", "/shirt/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/cup/**", "/shirt/**", "/about.html").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
 
