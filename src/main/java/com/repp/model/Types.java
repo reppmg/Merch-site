@@ -1,6 +1,4 @@
-package com.repp.service;
-
-import com.repp.model.Type;
+package com.repp.model;
 
 /**
  * Contains type constants.

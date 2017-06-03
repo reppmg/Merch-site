@@ -4,7 +4,7 @@ import com.repp.dao.CupsRepository;
 import com.repp.dao.GoodsRepository;
 import com.repp.model.Cup;
 import com.repp.service.GoodsService;
-import com.repp.service.Types;
+import com.repp.model.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
