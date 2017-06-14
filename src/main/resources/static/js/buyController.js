@@ -46,13 +46,12 @@ module
             $scope.good = good;
         });
 
-        // $scope.qualif = qualif;
-
         function convertFormToJSON(form, good_id, email) {
             var array = jQuery(form).serializeArray();
             var json = {};
             json["good_id"] = good_id;
             json["email"] = email;
+            json["save_address"] = $scope.check;
             json["address"] = {};
             var goodFields = ['zip', 'street', 'rest'];
             jQuery.each(array, function () {

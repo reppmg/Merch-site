@@ -137,8 +137,18 @@
                     </div>
                 </div>
                 <div id="success"></div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label>Save address in profile:</label>
+                        <input type="checkbox" ng-true-value="true" ng-false-value="false" ng-model="check" id="save_address" name="save_address">
+                        <br>
+                    </div>
+                </div>
+
                 <!-- For success/fail messages -->
                 <input id="submitBtn" type="button" class="btn btn-primary" value="Submit" ng-click="post()">
+
             </form>
         </div>
 

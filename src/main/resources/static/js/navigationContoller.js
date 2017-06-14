@@ -32,6 +32,9 @@ module
             sharedProperties.setProperty(data.data.uid);
             $scope.authenticated = "Logged as " + data.data
                     .first_name;
+            if (data.data.authenticated == true && data.data.registered == false) {
+                location.replace("/registration.html");
+            }
         }).catch(function () {
             $scope.user = "N/A";
             $scope.authenticated = false;
@@ -45,4 +48,5 @@ module
                 return "ng-hide"
             }
         }
+
     });
