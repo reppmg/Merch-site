@@ -23,8 +23,8 @@ public class UsersController {
     @Autowired
     AddressService addressService;
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{uid}")
-    public void endowAdminRight(final OAuth2Authentication authentication, @PathVariable final Long uid){
+    @RequestMapping(method = RequestMethod.PUT)
+    public void endowAdminRight(final OAuth2Authentication authentication, @RequestBody final Long uid){
         if (usersService.checkAuthorities(Long.valueOf(((Map) ((List) ((Map) authentication.getUserAuthentication().getDetails()).get("response")).get(0)).get("uid").toString()))){
             final User user = usersService.findById(uid);
             user.setRights(0);
