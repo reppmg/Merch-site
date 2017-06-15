@@ -28,6 +28,14 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public boolean checkAuthorities(final Long uid){
+        try {
+            return findById(uid).getRights() == 0;
+        } catch (Exception e){
+            return false;
+        }
+    }
+    @Override
     public User save(final User user) {
         return usersRepository.save(user);
     }

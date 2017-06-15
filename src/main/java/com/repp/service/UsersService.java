@@ -15,4 +15,6 @@ public interface UsersService{
     User findById(Long id);
 
     User save(User user);
+
+    boolean checkAuthorities(final Long uid);
 }

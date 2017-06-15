@@ -12,8 +12,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
@@ -41,7 +39,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
 //        auth.authenticationProvider(authenticationProvider());
-        auth.userDetailsService(userDetailsService);
+//        auth.userDetailsService(userDetailsService);
 //        auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
 //        auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
     }
@@ -65,25 +63,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider
-//                = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
-//        return authProvider;
-//    }
-
     @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(11);
+    public MyAuthenticationProvider authenticationProvider() {
+        MyAuthenticationProvider authProvider
+                = new MyAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        return authProvider;
     }
 
+
     public Filter ssoFilter() {
-        final OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/vk");
+        final OAuth2ClientAuthenticationProcessingFilter vkFilter =
+                new OAuth2ClientAuthenticationProcessingFilter("/login/vk");
         final OAuth2RestTemplate vkTemplate = new OAuth2RestTemplate(vk(), oauth2ClientContext);
         vkFilter.setRestTemplate(vkTemplate);
-        final UserInfoTokenServices tokenServices = new UserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
+        final UserInfoTokenServices tokenServices =
+                new UserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
         tokenServices.setRestTemplate(vkTemplate);
         vkFilter.setTokenServices(tokenServices);
         return vkFilter;
