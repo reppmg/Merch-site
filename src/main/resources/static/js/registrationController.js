@@ -18,6 +18,12 @@ module
         });
         var path = $location.absUrl();
 
+        $scope.useSavedAddress = true;
+
+        $scope.changeUsingSavedAddress = function () {
+            $scope.useSavedAddress = !$scope.useSavedAddress;
+        };
+
         function convertFormToJSON(form) {
             var array = jQuery(form).serializeArray();
             var json = {};
@@ -26,6 +32,7 @@ module
             jQuery.each(array, function () {
                 if (goodFields.indexOf(this.name) !== -1) {
                     json["address"][this.name] = this.value || ''
+                    if ($scope.useSavedAddress) json["address"][this.name] = '';
                 } else {
                     json[this.name] = this.value || '';
                 }
