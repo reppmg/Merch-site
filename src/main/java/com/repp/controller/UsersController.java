@@ -5,10 +5,7 @@ import com.repp.service.AddressService;
 import com.repp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -25,6 +22,16 @@ public class UsersController {
 
     @Autowired
     AddressService addressService;
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/{uid}")
+    public void endowAdminRight(final OAuth2Authentication authentication, @PathVariable final Long uid){
+        if (usersService.checkAuthorities(Long.valueOf(((Map) ((List) ((Map) authentication.getUserAuthentication().getDetails()).get("response")).get(0)).get("uid").toString()))){
+            final User user = usersService.findById(uid);
+            user.setRights(0);
+            usersService.save(user);
+        }
+
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     public void registerUser(@RequestBody final User user){
@@ -57,6 +64,10 @@ public class UsersController {
         if (user == null) {
             response.put("registered", false);
         } else {
+            if (user.getRights() == 0)
+                response.put("isAdmin", true);
+            else
+                response.put("isAdmin", false);
             response.put("phone", user.getPhone());
             response.put("address", user.getAddress());
             response.put("email", user.getEmail());
@@ -65,4 +76,6 @@ public class UsersController {
         return response;
 
     }
+
+
 }
