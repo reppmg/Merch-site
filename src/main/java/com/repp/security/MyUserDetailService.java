@@ -16,7 +16,8 @@ import java.util.Set;
 /**
  * Created by 1 on 14.06.2017.
  */
-@Service
+//@Service
+@Deprecated
 public class MyUserDetailService implements UserDetailsService {
 
     @Autowired

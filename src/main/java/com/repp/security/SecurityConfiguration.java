@@ -6,14 +6,11 @@ import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoT
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
@@ -30,21 +27,11 @@ import javax.servlet.Filter;
 
 @EnableOAuth2Client
 @Configuration
+@ComponentScan
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailsService userDetailsService;
-
-    @Autowired
     OAuth2ClientContext oauth2ClientContext;
-
-    @Autowired
-    public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(authenticationProvider());
-        auth.userDetailsService(userDetailsService);
-//        auth.inMemoryAuthentication().withUser("Maksik").password("fthio").roles("USER");
-//        auth.inMemoryAuthentication().withUser("Odmen").password("ftsio").roles("ADMIN", "DBA");
-    }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
@@ -55,9 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
 
                 .antMatchers(HttpMethod.POST, "/cup/**").access("hasRole(ROLE_ADMIN)")
-//                .and().formLogin().successForwardUrl("/registration.html")
                 .and().logout().logoutSuccessUrl("/").permitAll()
-//                .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .and().addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class)
 
         ;
@@ -65,25 +50,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
     }
 
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider
-//                = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
-//        return authProvider;
-//    }
-
     @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder(11);
+    public UserInfoTokenServices tokenServices() {
+        return new CustomUserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
     }
 
     public Filter ssoFilter() {
         final OAuth2ClientAuthenticationProcessingFilter vkFilter = new OAuth2ClientAuthenticationProcessingFilter("/login/vk");
         final OAuth2RestTemplate vkTemplate = new OAuth2RestTemplate(vk(), oauth2ClientContext);
         vkFilter.setRestTemplate(vkTemplate);
-        final UserInfoTokenServices tokenServices = new UserInfoTokenServices(vkResource().getUserInfoUri(), vk().getClientId());
+        final UserInfoTokenServices tokenServices = tokenServices();
         tokenServices.setRestTemplate(vkTemplate);
         vkFilter.setTokenServices(tokenServices);
         return vkFilter;
