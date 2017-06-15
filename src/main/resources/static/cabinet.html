@@ -27,7 +27,7 @@
 
 </head>
 
-<body ng-app="merch">
+<body ng-app="merch" link="#8a2be2" alink="#8a2be2" vlink="#8a2be2">
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -93,36 +93,37 @@
 
     <div class="row">
 
-        <div class="col-md-3">
-            <label>a place for img</label>
-            <img src="{{imageScr}}"/>
-        </div>
+        <!--<div class="col-md-3">-->
+            <!--<label>a place for img</label>-->
+            <!--<img src="{{imageScr}}"/>-->
+        <!--</div>-->
 
         <div class="col-md-9">
             <div class="row">
                 <div class="container">
-                    <label><b>First name: </b> {{name}}</label><br>
-                    <label><b>Last name: </b> {{surname}}</label><br>
-                    <label><b>Address: </b> {{userAddress}}</label><br>
-                    <label><b>Phone: </b> {{userPhone}}</label><br>
-                    <label><b>Email: </b> {{userEmail}}</label><br>
+                    <label><font size="5">Profile:</font></label><br>
+                    First name: <label>{{name}}</label><br>
+                    Last name: <label>{{surname}}</label><br>
+                    Address: <label>{{userAddress}}</label><br>
+                    Phone: <label>{{userPhone}}</label><br>
+                    Email: <label>{{userEmail}}</label><br><br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4" ng-repeat="order in orders">
                     <div class="thumbnail" style="padding: 8px;">
-                        <label><b>Order№ </b> {{order.id}}</label><br>
+                        <b><font size="3">Order №{{order.id}}:</font></b><br><br>
                         <div ng-hide="order.email == null">
-                            <label>Email: {{order.email}}</label><br>
+                            Email: <label>{{order.email}}</label><br>
                         </div>
                         <div ng-hide="order.phone == null">
-                            <label>Phone: {{order.phone}}</label><br>
+                            Phone: <label>{{order.phone}}</label><br>
                         </div>
-                        <label><b>Goods: </b></label><br>
+                        Goods: <br>
                         <div class="container" ng-repeat="good in order.goods">
                             <a href="/view.html?id={{good.id}}">Name: {{good.name}}</a><br>
-                            <label>{{good.description}}</label><br>
-                            <label>price: ${{good.price}}</label><br>
+                            {{good.description}}<br>
+                            price: <label>${{good.price}}</label><br>
                         </div>
                     </div>
                 </div>
