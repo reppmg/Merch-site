@@ -32,25 +32,53 @@
                         
                     </div>
                 </div>
-                <div class="control-group form-group">
+                <!--<div class="control-group form-group">-->
+                    <!--<div class="controls">-->
+                        <!--<label>Zip:</label>-->
+                        <!--<input type="text" class="form-control" id="zip" name="zip" value="75007">-->
+                        <!---->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="control-group form-group">-->
+                    <!--<div class="controls">-->
+                        <!--<label>Street:</label>-->
+                        <!--<input type="text" class="form-control" id="street" name="street" value="Avenue Anatole France">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="control-group form-group">-->
+                    <!--<div class="controls">-->
+                        <!--<label>Address:</label>-->
+                        <!--<input type="text" class="form-control" id="rest" name="rest" value="5-0">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="control-group form-group" ng-show="useSavedAddress">
                     <div class="controls">
-                        <label>Zip:</label>
-                        <input type="text" class="form-control" id="zip" name="zip" value="75007">
-                        
+                        <label>Address: </label>
+                        <a ng-click="changeUsingSavedAddress()">Specify address</a>
                     </div>
                 </div>
                 <div class="control-group form-group">
+                    <div class="controls" ng-hide="useSavedAddress">
+                        <label>Zip:</label>
+                        <input type="text" class="form-control" id="zip" name="zip" value="75007">
+                    </div>
+                </div>
+                <div class="control-group form-group" ng-hide="useSavedAddress">
                     <div class="controls">
                         <label>Street:</label>
                         <input type="text" class="form-control" id="street" name="street" value="Avenue Anatole France">
                     </div>
                 </div>
-                <div class="control-group form-group">
+                <div class="control-group form-group" ng-hide="useSavedAddress">
                     <div class="controls">
                         <label>Address:</label>
                         <input type="text" class="form-control" id="rest" name="rest" value="5-0">
                     </div>
                 </div>
+
+
+
                 <div class="control-group form-group">
                     <div class="controls">
                         <label>Phone:</label>
