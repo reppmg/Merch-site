@@ -107,6 +107,9 @@
                     Address: <label>{{userAddress}}</label><br>
                     Phone: <label>{{userPhone}}</label><br>
                     Email: <label>{{userEmail}}</label><br><br>
+                    <input type="text" value="Отправить" ng-model="id" id="id" ng-hide="admin == false">
+                    <input id="submitBtn" type="button" class="btn btn-primary" value="Submit" ng-click="submit()" ng-hide="admin == false">
+
                 </div>
             </div>
             <div class="row">
