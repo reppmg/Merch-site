@@ -15,10 +15,15 @@ module
                 data.data.address.street +
                 " " +
                 data.data.address.rest;
+            $scope.admin = data.data.isAdmin;
             $http.get('/order/user/'+$scope.user_id).then(function (data) {
                 $scope.orders = data.data;
             })
         }).catch(function (e) {
          alert("something has gone completely wrong. Try again please!")
          });
+
+        $scope.submit = function () {
+            $http.put('/user', $scope.id)
+        }
     });
