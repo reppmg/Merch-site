@@ -24,6 +24,6 @@ module
          });
 
         $scope.submit = function () {
-            $http.put('/user/', $scope.id)
+            $http.put('/user', $scope.id)
         }
     });
